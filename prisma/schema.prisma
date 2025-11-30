@@ -1,0 +1,72 @@
+// Prisma schema for Create Your Own Kit app
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Shop {
+  id          String   @id @default(cuid())
+  shopDomain  String   @unique
+  accessToken String
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  kits        Kit[]
+}
+
+model Kit {
+  id                String   @id @default(cuid())
+  shopId            String
+  shop              Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  
+  // Kit Configuration
+  title             String
+  description       String?
+  isActive          Boolean  @default(true)
+  
+  // Product Selection Rules
+  minProducts       Int      @default(4)
+  maxProducts       Int?
+  allowedCollections String[] // Collection IDs
+  allowedProducts    String[] // Product IDs (if specific products only)
+  
+  // Pricing & Discounts
+  discountType      String   @default("percentage") // percentage or fixed
+  discountValue     Float    @default(0)
+  
+  // Customization Options
+  customMessage     String?
+  buttonText        String   @default("Add to Cart")
+  buttonColor       String   @default("#000000")
+  buttonTextColor   String   @default("#FFFFFF")
+  
+  // Display Settings
+  showProductImages Boolean  @default(true)
+  showProductPrices Boolean  @default(true)
+  layoutStyle       String   @default("grid") // grid or list
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([shopId])
+}
+
+model KitOrder {
+  id              String   @id @default(cuid())
+  shopDomain      String
+  orderId         String
+  kitId           String
+  selectedProducts String[] // Product variant IDs
+  totalPrice      Float
+  discountApplied Float
+  finalPrice      Float
+  createdAt       DateTime @default(now())
+  
+  @@index([shopDomain])
+  @@index([kitId])
+}
