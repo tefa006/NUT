@@ -3,31 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Own Kit - Admin</title>
+  <title>Create Your Own Kit - Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .kit-card { transition: all 0.3s ease; }
-    .kit-card:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    * { font-family: 'Inter', sans-serif; }
+    
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-attachment: fixed;
+    }
+    
+    .kit-card { 
+      transition: all 0.3s ease;
+      background: white;
+    }
+    .kit-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .btn-gradient {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-gradient:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .status-badge {
+      animation: pulse-subtle 2s infinite;
+    }
+    
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
   </style>
 </head>
-<body class="bg-gray-50">
-  <div class="min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-        <h1 class="text-2xl font-bold text-gray-900">🎁 Create Your Own Kit</h1>
-        <p class="text-sm text-gray-600">Manage your custom product kits</p>
+<body>
+  <div class="min-h-screen pb-20">
+    <!-- Modern Header -->
+    <header class="glass-effect shadow-lg sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+              🎁 Create Your Own Kit
+            </h1>
+            <p class="text-sm text-gray-600 mt-1">Premium Bundle Builder Dashboard</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-gray-500">Powered by</p>
+            <p class="text-sm font-semibold text-purple-600">ZenithWeave Agency</p>
+          </div>
+        </div>
       </div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <!-- Action Bar -->
-      <div class="mb-6 flex justify-between items-center">
-        <h2 class="text-xl font-semibold text-gray-800">Your Kits</h2>
-        <button onclick="openCreateModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition">
-          + Create New Kit
-        </button>
+      <div class="glass-effect rounded-2xl p-6 mb-8 shadow-xl">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Your Kits</h2>
+            <p class="text-sm text-gray-500 mt-1">Manage and customize your product bundles</p>
+          </div>
+          <button onclick="openCreateModal()" class="btn-gradient text-white px-6 py-3 rounded-xl font-semibold shadow-lg flex items-center gap-2">
+            <span class="text-xl">+</span> Create New Kit
+          </button>
+        </div>
       </div>
 
       <!-- Kits Grid -->
@@ -332,5 +391,39 @@
       }
     });
   </script>
+  
+  <!-- Footer with Branding -->
+  <footer class="glass-effect mt-12 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-center md:text-left">
+          <h3 class="text-lg font-bold text-gray-800">Developed by Mostafa Magdy</h3>
+          <p class="text-sm text-gray-600 mt-1">ZenithWeave Agency - Premium Shopify Solutions</p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+          <a href="mailto:hi@zenithweave.com" class="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            hi@zenithweave.com
+          </a>
+          
+          <a href="tel:+201011400020" class="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-medium transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+            </svg>
+            +201011400020
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+        <p class="text-sm text-gray-500">
+          © 2024 Create Your Own Kit. All rights reserved. | Powered by ZenithWeave Agency
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
